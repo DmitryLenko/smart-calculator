@@ -1,48 +1,43 @@
 class SmartCalculator {
   constructor(initialValue) {
     this.total = 0;
-    this.equal = [initialValue];
-   
+    this.equal = [initialValue];   
   }
  get recalculated() {
-    var arr = this.equal.slice();
-    console.log(arr)
-    for(let i =arr.length-1; i>0; i--) {
+    var arr = this.equal;
+    for(let i = arr.length-1; i>0; i--) {
       if(arr[i] === '^') {
         var res = Math.pow(arr[i-1] ,arr[i+1]);
-        arr.splice(i-1,3,res);
-        i=arr.length-1;
+        arr.splice(i-1, 3, res);
+        i++;
       }
     }
-    for(let i = 0; i< arr.length; i++) {
+
+    for(let i = 0; i < arr.length; i++) {
       if(arr[i] === '*') {
         var res = arr[i-1] * arr[i+1];
-        arr.splice(i-1,3,res);
-        i=0;
+        arr.splice(i-1, 3, res);
+        i--;
       }
-    }
-    for(let i = 0; i< arr.length; i++) {
       if(arr[i] === '/') {
         var res = arr[i-1] / arr[i+1];
-        arr.splice(i-1,3,res);
-        i=0;
+        arr.splice(i-1, 3, res);
+        i--;
       }
     }
     
-    for(let i = 0; i< arr.length; i++) {
+    for(let i = 0; i < arr.length; i++) {
       if(arr[i] === '+') {
         var res = arr[i-1] + arr[i+1];
-        arr.splice(i-1,3,res);
-        i=0;
+        arr.splice(i-1, 3, res);
+        i--;
       }
       if(arr[i] === '-') {
         var res = arr[i-1] - arr[i+1];
-        arr.splice(i-1,3,res);
-        i=0;
+        arr.splice(i-1, 3, res);
+        i--;
       }
-      
     }
-    
     return arr[0];
   }
   
